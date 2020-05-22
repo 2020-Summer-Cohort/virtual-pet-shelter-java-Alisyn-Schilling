@@ -6,12 +6,15 @@ public class VirtualPetShelterApp {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         VirtualPet pet1 = new VirtualPet("Phauxe",
-                "A fox with bright orange fur");
+                "A fox with bright orange fur",
+                58, 43, 62);
         VirtualPet pet2 = new VirtualPet("Taz",
-                "An old social tabby cat");
+                "An old social tabby cat",
+                53, 47, 58);
         VirtualPet pet3 = new VirtualPet("Carter",
-                "A cuddly calico cat");
-        VirtualPetShelter shelter = new VirtualPetShelter();
+                "A cuddly calico cat",
+                47, 56, 54);
+        VirtualPetShelter shelter = new VirtualPetShelter(50);
         shelter.addPetToShelter(pet1);
         shelter.addPetToShelter(pet2);
         shelter.addPetToShelter(pet3);
@@ -19,6 +22,7 @@ public class VirtualPetShelterApp {
         System.out.println("Welcome to your Virtual Pet Shelter!\n");
 
         while (true) {
+            System.out.println("The pet pens are this dirty: " + shelter.getPenCleanliness());
             System.out.println("This is the status of your pets:\n");
             getPetsStatus(shelter);
             System.out.println("What would you like to do next?\n");
@@ -68,14 +72,15 @@ public class VirtualPetShelterApp {
                 "3. Play with a pet\n" +
                 "4. Adopt a pet\n" +
                 "5. Admit a pet\n" +
+                "6. Clean Pens\n" +
                 "0. Quit");
         int input = scanner.nextInt();
         input = shelterHelp(scanner, input);
         if (input == 1) {
-            shelter.feedAllPets(25);
+            shelter.feedAllPets(43);
             System.out.println("You feed the pets!");
         } else if (input == 2) {
-            shelter.waterAllPets(35);
+            shelter.waterAllPets(47);
             System.out.println("You water the pets!");
         } else if (input == 3) {
             playWithPet(scanner, shelter);
@@ -83,14 +88,17 @@ public class VirtualPetShelterApp {
             adoptPet(scanner, shelter);
         } else if (input == 5) {
             admitPet(scanner, shelter);
+        } else if (input == 6) {
+            shelter.cleanPens(50);
+            System.out.println("You cleaned the pens!");
         }
         return input;
 
     }
 
     public static int shelterHelp(Scanner scanner, int input) {
-        while ((input > 5) || (input < 0)) {
-            System.out.println("Please enter a number between 0 and 5:");
+        while ((input > 6) || (input < 0)) {
+            System.out.println("Please enter a number between 0 and 6:");
             input = scanner.nextInt();
         }
         return input;
@@ -101,10 +109,10 @@ public class VirtualPetShelterApp {
         for (VirtualPet pet : shelter.getAllPets()) {
             System.out.println(pet.getPetName() + ": " + pet.getPetDescription());
         }
-        System.out.println("\nWhich pet would you like to play with?\n");
+        System.out.println("\nWhich pet would you like to play with?");
         String pet = scanner.next();
         pet = petHelp(scanner, shelter, pet);
-        shelter.playWithPet(pet, 40);
+        shelter.playWithPet(pet, 53);
     }
 
     public static void adoptPet(Scanner scanner, VirtualPetShelter shelter) {
@@ -112,7 +120,7 @@ public class VirtualPetShelterApp {
         for (VirtualPet pet : shelter.getAllPets()) {
             System.out.println(pet.getPetName() + ": " + pet.getPetDescription());
         }
-        System.out.println("\nWhich pet would you like to adopt?\n");
+        System.out.println("\nWhich pet would you like to adopt?");
         String pet = scanner.next();
         pet = petHelp(scanner, shelter, pet);
         shelter.removePetFromShelter(pet);

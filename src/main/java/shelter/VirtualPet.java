@@ -45,20 +45,42 @@ public class VirtualPet {
     }
 
     public void feed(int food) {
-        petHunger -= food;
+        if ((petHunger - food) > 0) {
+            petHunger -= food;
+        } else {
+            petHunger = 0;
+        }
+
     }
 
     public void water(int water) {
-        petThirst -= water;
+        if ((petThirst - water) > 0) {
+            petThirst -= water;
+        } else {
+            petThirst = 0;
+        }
     }
 
     public void play(int play) {
-        petBoredom -= play;
+        if ((petBoredom - play) > 0) {
+            petBoredom -= play;
+        } else {
+            petBoredom = 0;
+        }
     }
 
     public void tick() {
-        petHunger += 5;
-        petThirst += 7;
-        petBoredom += 2;
+        petHunger += 9;
+        petThirst += 11;
+        petBoredom += 7;
+        if (petHunger > 100) {
+            petHunger = 100;
+        }
+        if (petThirst > 100) {
+            petThirst = 100;
+        }
+        if (petBoredom > 100) {
+            petBoredom = 100;
+        }
     }
 }
