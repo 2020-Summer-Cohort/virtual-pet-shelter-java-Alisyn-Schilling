@@ -11,7 +11,7 @@ public class VirtualPetShelterTest {
     public void canAddPet() {
         VirtualPet underTestPet = new VirtualPet("Phauxe",
                 "A fox with bright orange fur.");
-        VirtualPetShelter underTestShelter = new VirtualPetShelter();
+        VirtualPetShelter underTestShelter = new VirtualPetShelter(50);
         underTestShelter.addPetToShelter(underTestPet);
         VirtualPet underTestShelterPet = underTestShelter.getPet("Phauxe");
         assertEquals("Phauxe", underTestShelterPet.getPetName());
@@ -23,7 +23,7 @@ public class VirtualPetShelterTest {
                 "A fox with bright orange fur.");
         VirtualPet underTestPet2 = new VirtualPet("Taz",
                 "An old tabby cat.");
-        VirtualPetShelter underTestShelter = new VirtualPetShelter();
+        VirtualPetShelter underTestShelter = new VirtualPetShelter(50);
         underTestShelter.addPetToShelter(underTestPet1);
         underTestShelter.addPetToShelter(underTestPet2);
         Collection<VirtualPet> petsInShelter = underTestShelter.getAllPets();
@@ -34,7 +34,7 @@ public class VirtualPetShelterTest {
     public void canRemovePet() {
         VirtualPet underTestPet = new VirtualPet("Phauxe",
                 "A fox with bright orange fur.");
-        VirtualPetShelter underTestShelter = new VirtualPetShelter();
+        VirtualPetShelter underTestShelter = new VirtualPetShelter(50);
         underTestShelter.addPetToShelter(underTestPet);
         underTestShelter.removePetFromShelter(underTestPet.getPetName());
         Collection<VirtualPet> petsInShelter = underTestShelter.getAllPets();
@@ -47,7 +47,7 @@ public class VirtualPetShelterTest {
                 "A fox with bright orange fur.");
         VirtualPet underTestPet2 = new VirtualPet("Taz",
                 "An old tabby cat.");
-        VirtualPetShelter underTestShelter = new VirtualPetShelter();
+        VirtualPetShelter underTestShelter = new VirtualPetShelter(50);
         underTestShelter.addPetToShelter(underTestPet1);
         underTestShelter.addPetToShelter(underTestPet2);
         underTestShelter.feedAllPets(5);
@@ -62,7 +62,7 @@ public class VirtualPetShelterTest {
                 "A fox with bright orange fur.");
         VirtualPet underTestPet2 = new VirtualPet("Taz",
                 "An old tabby cat.");
-        VirtualPetShelter underTestShelter = new VirtualPetShelter();
+        VirtualPetShelter underTestShelter = new VirtualPetShelter(50);
         underTestShelter.addPetToShelter(underTestPet1);
         underTestShelter.addPetToShelter(underTestPet2);
         underTestShelter.waterAllPets(5);
@@ -76,7 +76,7 @@ public class VirtualPetShelterTest {
                 "A fox with bright orange fur.");
         VirtualPet underTestPet2 = new VirtualPet("Taz",
                 "An old tabby cat.");
-        VirtualPetShelter underTestShelter = new VirtualPetShelter();
+        VirtualPetShelter underTestShelter = new VirtualPetShelter(50);
         underTestShelter.addPetToShelter(underTestPet1);
         underTestShelter.addPetToShelter(underTestPet2);
         underTestShelter.playWithPet("Phauxe", 5);
@@ -89,12 +89,12 @@ public class VirtualPetShelterTest {
                 "A fox with bright orange fur.");
         VirtualPet underTestPet2 = new VirtualPet("Taz",
                 "An old tabby cat.");
-        VirtualPetShelter underTestShelter = new VirtualPetShelter();
+        VirtualPetShelter underTestShelter = new VirtualPetShelter(50);
         underTestShelter.addPetToShelter(underTestPet1);
         underTestShelter.addPetToShelter(underTestPet2);
         underTestShelter.tick();
-        assertEquals(50, underTestPet1.getPetHunger());
-        assertEquals(50, underTestPet2.getPetHunger());
+        assertEquals(54, underTestPet1.getPetHunger());
+        assertEquals(54, underTestPet2.getPetHunger());
     }
 
     @Test
@@ -103,10 +103,21 @@ public class VirtualPetShelterTest {
                 "A fox with bright orange fur.");
         VirtualPet underTestPet2 = new VirtualPet("Taz",
                 "An old tabby cat.");
-        VirtualPetShelter underTestShelter = new VirtualPetShelter();
+        VirtualPetShelter underTestShelter = new VirtualPetShelter(50);
         underTestShelter.addPetToShelter(underTestPet1);
         underTestShelter.addPetToShelter(underTestPet2);
         assertTrue(underTestShelter.isPetInShelter("Taz"));
         assertFalse(underTestShelter.isPetInShelter("Steve"));
+    }
+    @Test
+    public void checkPenCleanliness(){
+        VirtualPetShelter underTestShelter = new VirtualPetShelter(50);
+        assertEquals(50, underTestShelter.getPenCleanliness());
+    }
+    @Test
+    public void tickPenCleanliness(){
+        VirtualPetShelter underTestShelter = new VirtualPetShelter(50);
+        underTestShelter.tick();
+        assertEquals(55, underTestShelter.getPenCleanliness());
     }
 }

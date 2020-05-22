@@ -58,6 +58,6 @@ public class VirtualPetTest {
                 "A fox with bright orange fur.",
                 43, 46, 52);
         underTest.tick();
-        assertEquals(48, underTest.getPetHunger());
+        assertEquals(52, underTest.getPetHunger());
     }
 }
