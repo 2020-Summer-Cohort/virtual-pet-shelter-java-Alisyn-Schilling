@@ -109,13 +109,15 @@ public class VirtualPetShelterTest {
         assertTrue(underTestShelter.isPetInShelter("Taz"));
         assertFalse(underTestShelter.isPetInShelter("Steve"));
     }
+
     @Test
-    public void checkPenCleanliness(){
+    public void checkPenCleanliness() {
         VirtualPetShelter underTestShelter = new VirtualPetShelter(50);
         assertEquals(50, underTestShelter.getPenCleanliness());
     }
+
     @Test
-    public void tickPenCleanliness(){
+    public void tickPenCleanliness() {
         VirtualPetShelter underTestShelter = new VirtualPetShelter(50);
         underTestShelter.tick();
         assertEquals(55, underTestShelter.getPenCleanliness());

@@ -133,6 +133,7 @@ public class VirtualPetShelterApp {
         System.out.println("Please give a description of the pet.");
         String description = scanner.next();
         System.out.println("On a scale of 1 - 100, how hungry is the pet?");
+        scanner.nextLine();
         int hunger = scanner.nextInt();
         System.out.println("On a scale of 1 - 100, how thirsty is the pet?");
         int thirst = scanner.nextInt();
